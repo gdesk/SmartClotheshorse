@@ -1,0 +1,512 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "sample API of a Smart Clotheshorse for Pervasive Computing course @ Unibo",
+    "version" : "1.0.0",
+    "title" : "SmartClotheshorse"
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/gmp/smartclotheshorse/1.0.0",
+  "tags" : [ {
+    "name" : "devices"
+  }, {
+    "name" : "sensors"
+  }, {
+    "name" : "actuators"
+  } ],
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/devices" : {
+      "get" : {
+        "tags" : [ "devices" ],
+        "summary" : "Return all the devices connected to the system",
+        "description" : "Returns a list of devices",
+        "operationId" : "getDevices",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AllDevicesResponse"
+            }
+          }
+        }
+      }
+    },
+    "/devices/clotheshorse" : {
+      "get" : {
+        "tags" : [ "devices" ],
+        "summary" : "Return the clotheshorse device",
+        "description" : "Return the clotheshorse device",
+        "operationId" : "getClotheshorse",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ClotheshorseResponse"
+            }
+          }
+        }
+      }
+    },
+    "/devices/clips" : {
+      "get" : {
+        "tags" : [ "devices" ],
+        "summary" : "Return the list of clips associated with the clotheshorse",
+        "description" : "Return the clips list",
+        "operationId" : "getClips",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AllClipsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/devices/clip/{clipId}" : {
+      "get" : {
+        "tags" : [ "devices" ],
+        "summary" : "Return a single clip with the specified id",
+        "description" : "Return a single clip",
+        "operationId" : "getClip",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "clipId",
+          "in" : "path",
+          "description" : "ID of clip",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ClipResponse"
+            }
+          }
+        }
+      }
+    },
+    "/sensors" : {
+      "get" : {
+        "tags" : [ "sensors" ],
+        "summary" : "Returns all the SmartClotheshorse available sensors",
+        "description" : "Returns a list of sensors",
+        "operationId" : "getSensors",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AllSensorsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/sensors/humidity" : {
+      "get" : {
+        "tags" : [ "sensors" ],
+        "summary" : "Returns the percentage of humidity of the environment or of the clothes",
+        "description" : "Returns the value read from the humidity sensor",
+        "operationId" : "getHumidity",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/HumidityResponse"
+            }
+          }
+        }
+      }
+    },
+    "/sensors/anemometer" : {
+      "get" : {
+        "tags" : [ "sensors" ],
+        "summary" : "Returns wind speed value",
+        "description" : "Returns the value of the wind speed",
+        "operationId" : "getWindSpeed",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AnemometerResponse"
+            }
+          }
+        }
+      }
+    },
+    "/sensors/temperature" : {
+      "get" : {
+        "tags" : [ "sensors" ],
+        "summary" : "Returns the environment's temperature",
+        "description" : "Returns the value of the temperature sensor",
+        "operationId" : "getTemperature",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/TemperatureResponse"
+            }
+          }
+        }
+      }
+    },
+    "/sensors/balance" : {
+      "get" : {
+        "tags" : [ "sensors" ],
+        "summary" : "Returns the current weight of the clothes on the clotheshorse",
+        "description" : "Returns the clothes' weight",
+        "operationId" : "getWeight",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/BalanceResponse"
+            }
+          }
+        }
+      }
+    },
+    "/actuators" : {
+      "get" : {
+        "tags" : [ "actuators" ],
+        "summary" : "Returns all the SmartClotheshorse available actuators",
+        "description" : "Returns a list of actuators",
+        "operationId" : "getActuators",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AllActuatorsResponse"
+            }
+          }
+        }
+      }
+    },
+    "/actuators/putInside" : {
+      "get" : {
+        "tags" : [ "actuators" ],
+        "summary" : "Returns if the request has been completed",
+        "operationId" : "getPutInside",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/PutInsideResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "actuators" ],
+        "summary" : "Request to put inside the clotheshorse",
+        "operationId" : "postPutInside",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "202" : {
+            "description" : "Request accepted"
+          },
+          "501" : {
+            "description" : "broken engine"
+          }
+        }
+      }
+    },
+    "/actuators/putOutside" : {
+      "get" : {
+        "tags" : [ "actuators" ],
+        "summary" : "Returns if the request has been completed",
+        "operationId" : "getPutOutside",
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/PutOutsideResponse"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "actuators" ],
+        "summary" : "Request to put outside the clotheshorse",
+        "operationId" : "postPutOutside",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ ],
+        "responses" : {
+          "202" : {
+            "description" : "Request accepted"
+          },
+          "501" : {
+            "description" : "broken engine"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Device" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "example" : "clip"
+        },
+        "url" : {
+          "type" : "string",
+          "example" : "smartclotheshorse.io/device/clip"
+        }
+      },
+      "xml" : {
+        "name" : "deviceTag"
+      }
+    },
+    "Sensor" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "example" : "humidity"
+        },
+        "url" : {
+          "type" : "string",
+          "example" : "smartclotheshorse.io/sensors/humidity"
+        }
+      },
+      "xml" : {
+        "name" : "sensorTag"
+      }
+    },
+    "Actuator" : {
+      "type" : "object",
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "example" : "putInside"
+        },
+        "url" : {
+          "type" : "string",
+          "example" : "smartclotheshorse.io/actuators/watering"
+        }
+      },
+      "xml" : {
+        "name" : "actuatorTag"
+      }
+    },
+    "AllDevicesResponse" : {
+      "type" : "object",
+      "properties" : {
+        "devices" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "devices",
+            "wrapped" : true
+          },
+          "items" : {
+            "$ref" : "#/definitions/Device"
+          }
+        }
+      },
+      "xml" : {
+        "name" : "allDeviceResponseTag"
+      }
+    },
+    "ClotheshorseResponse" : {
+      "type" : "object",
+      "properties" : {
+        "clotheshorse" : {
+          "$ref" : "#/definitions/ClotheshorseResponse_clotheshorse"
+        }
+      }
+    },
+    "AllClipsResponse" : {
+      "type" : "object",
+      "properties" : {
+        "clips" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "clips",
+            "wrapped" : true
+          },
+          "items" : {
+            "$ref" : "#/definitions/Device"
+          }
+        }
+      },
+      "xml" : {
+        "name" : "allClipsResponseTag"
+      }
+    },
+    "ClipResponse" : {
+      "type" : "object",
+      "properties" : {
+        "clip" : {
+          "$ref" : "#/definitions/ClipResponse_clip"
+        }
+      }
+    },
+    "AllSensorsResponse" : {
+      "type" : "object",
+      "properties" : {
+        "sensors" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "sensors",
+            "wrapped" : true
+          },
+          "items" : {
+            "$ref" : "#/definitions/Sensor"
+          }
+        }
+      },
+      "xml" : {
+        "name" : "allSensorResponseTag"
+      }
+    },
+    "HumidityResponse" : {
+      "type" : "object",
+      "properties" : {
+        "humidityPercentage" : {
+          "type" : "number",
+          "example" : 60.9
+        }
+      }
+    },
+    "AnemometerResponse" : {
+      "type" : "object",
+      "properties" : {
+        "AnemometerKm/h" : {
+          "type" : "number",
+          "example" : 11.0
+        }
+      }
+    },
+    "TemperatureResponse" : {
+      "type" : "object",
+      "properties" : {
+        "temperatureCelsius" : {
+          "type" : "number",
+          "example" : 30.4
+        }
+      }
+    },
+    "BalanceResponse" : {
+      "type" : "object",
+      "properties" : {
+        "WeightKg" : {
+          "type" : "number",
+          "example" : 3.4
+        }
+      }
+    },
+    "AllActuatorsResponse" : {
+      "type" : "object",
+      "properties" : {
+        "actuators" : {
+          "type" : "array",
+          "xml" : {
+            "name" : "actuators",
+            "wrapped" : true
+          },
+          "items" : {
+            "$ref" : "#/definitions/Actuator"
+          }
+        }
+      },
+      "xml" : {
+        "name" : "allActuatorsResponseTag"
+      }
+    },
+    "PutInsideResponse" : {
+      "type" : "object",
+      "properties" : {
+        "putInside" : {
+          "type" : "boolean",
+          "example" : true
+        }
+      },
+      "xml" : {
+        "name" : "putInsideResponseTag"
+      }
+    },
+    "PutOutsideResponse" : {
+      "type" : "object",
+      "properties" : {
+        "putOutside" : {
+          "type" : "boolean",
+          "example" : false
+        }
+      },
+      "xml" : {
+        "name" : "putOutsideResponseTag"
+      }
+    },
+    "ClotheshorseResponse_clotheshorse" : {
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        },
+        "sensors" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Sensor"
+          }
+        },
+        "actuators" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Actuator"
+          }
+        }
+      },
+      "example" : "[{\"name\":\"my clotheshorse\",\"sensors\":[{\"id\":\"Temp\",\"name\":\"Temperature Sensor\",\"description\":\"The temperature sensor (in °C)\",\"type\":\"integer\",\"value\":42},{\"id\":\"Hum\",\"name\":\"Humidity Sensor\",\"description\":\"The relative humidity sensor (in %)\",\"type\":\"integer\",\"value\":67},{\"id\":\"Anem\",\"name\":\"Anemometer ( wind sensor )\",\"description\":\"The wind speed (in knots)\",\"type\":\"integer\",\"value\":2},{\"id\":\"Weight\",\"name\":\"Weight Sensor\",\"description\":\"The weight of the clothes on the device\",\"type\":\"double\",\"value\":10.5}],\"actuators\":[{\"id\":\"Engine\",\"name\":\"Engine\",\"description\":\"The engine to move in the device\",\"isActive\":false}]}]",
+      "xml" : {
+        "name" : "clotheshorseResponseTag"
+      }
+    },
+    "ClipResponse_clip" : {
+      "properties" : {
+        "id" : {
+          "type" : "number"
+        },
+        "name" : {
+          "type" : "string"
+        },
+        "sensor" : {
+          "type" : "object",
+          "properties" : { }
+        }
+      },
+      "example" : "[{\"id\":5,\"name\":\"clip5\",\"sensor\":[{\"id\":\"Hum\",\"name\":\"Humidity Sensor\",\"description\":\"The cloth's humidity sensor (in %)\",\"type\":\"integer\",\"value\":67}]}]",
+      "xml" : {
+        "name" : "clipResponseTag"
+      }
+    }
+  }
+}
